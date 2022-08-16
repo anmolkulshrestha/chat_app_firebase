@@ -1,9 +1,11 @@
+import 'package:chat_app/features/landing/screens/landing_screen.dart';
 import 'package:chat_app/router.dart';
 import 'package:chat_app/screens/mobile_layout_screen.dart';
 import 'package:chat_app/screens/web_layout_screen.dart';
 import 'package:chat_app/utils/responsive_layout.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'colors.dart';
 import 'firebase_options.dart';
@@ -14,7 +16,7 @@ void main() async{
     options: DefaultFirebaseOptions.currentPlatform,
 
   );
-  runApp(const MyApp());
+  runApp(ProviderScope(child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -29,10 +31,8 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: backgroundColor,
       ),
       onGenerateRoute: (settings)=>generateRoute(settings),
-      home: const ResponsiveLayout(
-        mobileScreenLayout: MobileLayoutScreen(),
-        webScreenLayout: WebLayoutScreen(),
-      ),
-    );
+      home: LandingScreen(),
+      );
+
   }
 }
