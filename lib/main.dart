@@ -1,3 +1,4 @@
+import 'package:chat_app/router.dart';
 import 'package:chat_app/screens/mobile_layout_screen.dart';
 import 'package:chat_app/screens/web_layout_screen.dart';
 import 'package:chat_app/utils/responsive_layout.dart';
@@ -11,6 +12,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
+
   );
   runApp(const MyApp());
 }
@@ -26,6 +28,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: backgroundColor,
       ),
+      onGenerateRoute: (settings)=>generateRoute(settings),
       home: const ResponsiveLayout(
         mobileScreenLayout: MobileLayoutScreen(),
         webScreenLayout: WebLayoutScreen(),
