@@ -7,6 +7,8 @@ import 'package:chat_app/features/auth/screens/user_information_screen.dart';
 
 import 'package:flutter/material.dart';
 
+import 'features/selectcontacts/screens/select_contacts_screen.dart';
+
 Route<dynamic> generateRoute(RouteSettings settings){
   switch(settings.name){
     case LoginScreen.routeName:
@@ -21,6 +23,10 @@ Route<dynamic> generateRoute(RouteSettings settings){
         builder: (context) => OTPScreen(
           verificationId: verificationId,
         ),
+      );
+    case SelectContactsScreen.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const SelectContactsScreen(),
       );
     default:
      return MaterialPageRoute(builder: (context)=>Scaffold(

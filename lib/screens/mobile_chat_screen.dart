@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../colors.dart';
 import '../info.dart';
 import '../widgets/chat_list.dart';
 
 
-class MobileChatScreen extends StatelessWidget {
+class MobileChatScreen extends ConsumerWidget {
+  static const String routeName = '/mobile-chat-screen';
   const MobileChatScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: appBarColor,
