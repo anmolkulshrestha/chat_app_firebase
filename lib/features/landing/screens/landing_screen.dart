@@ -8,6 +8,7 @@ class LandingScreen extends StatelessWidget {
 
   void navigateToLoginScreen(BuildContext context) {
     Navigator.pushNamed(context, LoginScreen.routeName);
+
   }
 
   @override

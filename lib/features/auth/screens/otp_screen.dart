@@ -8,7 +8,7 @@ import '../controller/authh_controller.dart';
 
 class OTPScreen extends ConsumerStatefulWidget {
   static const String routeName='/otp-screen';
-  final String verificationId;
+   final String verificationId;
 
 
   const OTPScreen({Key? key,required this.verificationId}) : super(key: key);
@@ -18,7 +18,11 @@ class OTPScreen extends ConsumerStatefulWidget {
 
 class _OTPScreenState extends ConsumerState<OTPScreen> {
 
-
+  void verifyOTP(WidgetRef ref, BuildContext context, String userOTP) {
+    ref.read(authControllerProvider).verifyOTP(
+      context,widget.verificationId,userOTP
+    );
+  }
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
