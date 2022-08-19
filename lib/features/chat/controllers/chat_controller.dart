@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../models/chat_contact.dart';
+import '../../../models/message.dart';
 final chatControllerProvider = Provider((ref) {
   final chatRepository = ref.watch(chatrepositoryprovider);
   return ChatRepositoryController(ref: ref, chatrepository: chatRepository);
@@ -14,6 +15,10 @@ class ChatRepositoryController{
 ChatRepositoryController({required this.ref,required this.chatrepository});
   Stream<List<ChatContact>> chatContacts() {
     return chatrepository.getchatcontacts();
+  }
+
+  Stream<List<Message>> chatStream(String recieverUserId) {
+    return chatrepository.getChatStream(recieverUserId);
   }
 void sendtextmessage(BuildContext context,String text,String reciverid){
   ref.read(userDataAuthProvider).whenData((value) => chatrepository.sendtextmessage(context: context, text: text, reciveruserid: reciverid, senderuser: value!));

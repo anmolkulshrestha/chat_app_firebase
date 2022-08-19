@@ -2,9 +2,11 @@ import 'package:chat_app/features/chat/controllers/chat_controller.dart';
 import 'package:chat_app/models/chat_contact.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 
 import '../colors.dart';
+import '../common/widgets/loader.dart';
 import '../info.dart';
 import '../features/chat/screens/mobile_chat_screen.dart';
 
@@ -22,20 +24,28 @@ class ContactsList extends ConsumerWidget {
             shrinkWrap: true,
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Loader();
+              }
+
               var chatcontact=snapshot.data![index];
+              var timeSent = DateFormat.Hm().format(chatcontact.timeSent);
               return Column(
                 children: [
                   InkWell(
                     onTap: () {
 
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MobileChatScreen(name: "anmol", uid: "12345")));
+                      Navigator.pushNamed(context, MobileChatScreen.routeName,arguments: {
+                        'name':chatcontact.name,
+                        'uid':chatcontact.contactId
+                      });
 
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: ListTile(
                         title: Text(
-                          info[index]['name'].toString(),
+                          chatcontact.name,
                           style: const TextStyle(
                             fontSize: 18,
                           ),

@@ -46,7 +46,7 @@ class WebLayoutScreen extends StatelessWidget {
                 const ChatAppBar(),
                 const SizedBox(height: 20),
                 const Expanded(
-                  child: ChatList(),
+                  child: ChatList(reciveruserid: '',),
                 ),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.07,
