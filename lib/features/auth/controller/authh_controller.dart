@@ -58,6 +58,8 @@ required this.ref
     );
   }
 
-
+Stream<UserModel> userDataById(String userid){
+    return authRepository.userData(userid);
+}
 
 }

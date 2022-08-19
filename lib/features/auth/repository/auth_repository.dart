@@ -82,6 +82,13 @@ showSnackBar(context: context, content: e.toString());
       showSnackBar(context: context, content: e.message!);
     }
   }
+  Stream<UserModel> userData(String userId) {
+    return firestore.collection('users').doc(userId).snapshots().map(
+          (event) => UserModel.fromMap(
+        event.data()!,
+      ),
+    );
+  }
   void saveUserDataToFirebase({
     required String name,
     required File? profilePic,
