@@ -53,18 +53,18 @@ class ContactsList extends ConsumerWidget {
                         subtitle: Padding(
                           padding: const EdgeInsets.only(top: 6.0),
                           child: Text(
-                            info[index]['message'].toString(),
+                           chatcontact.lastMessage,
                             style: const TextStyle(fontSize: 15),
                           ),
                         ),
                         leading: CircleAvatar(
                           backgroundImage: NetworkImage(
-                            info[index]['profilePic'].toString(),
+                            chatcontact.profilePic,
                           ),
                           radius: 30,
                         ),
                         trailing: Text(
-                          info[index]['time'].toString(),
+                          chatcontact.timeSent.toString(),
                           style: const TextStyle(
                             color: Colors.grey,
                             fontSize: 13,

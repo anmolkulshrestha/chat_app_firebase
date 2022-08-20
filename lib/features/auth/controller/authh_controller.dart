@@ -47,7 +47,9 @@ required this.ref
       userOTP: userOTP,
     );
   }
-
+  void setUserState(bool isOnline) {
+    authRepository.setUserState(isOnline);
+  }
   void saveUserDataToFirebase(
       BuildContext context, String name, File? profilePic) {
     authRepository.saveUserDataToFirebase(

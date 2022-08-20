@@ -89,6 +89,11 @@ showSnackBar(context: context, content: e.toString());
       ),
     );
   }
+  void setUserState(bool isOnline) async {
+    await firestore.collection('users').doc(auth.currentUser!.uid).update({
+      'isOnline': isOnline,
+    });
+  }
   void saveUserDataToFirebase({
     required String name,
     required File? profilePic,

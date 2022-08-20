@@ -27,7 +27,7 @@ class _UserInformationScreenState extends ConsumerState<UserInformationScreen> {
   if(image==null){print("cccccccc");}
   else{print("bjadhakhbvjdbvncnajcbqskjb vkj");}
   setState(() {
-
+image=image;
   });
  }
  void storeUserData() async {

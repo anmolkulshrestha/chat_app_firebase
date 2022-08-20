@@ -1,8 +1,10 @@
+import 'package:chat_app/common/utils/utils.dart';
 import 'package:chat_app/features/chat/controllers/chat_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'dart:io';
 import '../../../colors.dart';
+import '../../../common/enums/messages_enums.dart';
 
 class BottamChatField extends ConsumerStatefulWidget {
   final String reciveruserid;
@@ -20,7 +22,31 @@ class _BottamChatFieldState extends ConsumerState<BottamChatField> {
 ref.read(chatControllerProvider).sendtextmessage(context, texteditincontroller.text.trim(), widget.reciveruserid);
    }
  }
+  void sendFileMessage(
+      File file,
+      MessageEnum messageEnum,
+      ) {
+    ref.read(chatControllerProvider).sendFileMessage(
+      context,
+      file,
+     widget.reciveruserid,
+      messageEnum,
+   );
+  }
 
+  void selectImage() async {
+    File? image = await pickimage(context);
+    if (image != null) {
+      sendFileMessage(image, MessageEnum.image);
+    }
+  }
+
+  void selectVideo() async {
+    File? video = await pickVideoFromGallery(context);
+    if (video != null) {
+      sendFileMessage(video, MessageEnum.video);
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Row(
